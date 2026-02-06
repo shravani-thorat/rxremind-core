@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reminders</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>📋 Active Reminders</h2>
+
+    {% if reminders %}
+        {% for r in reminders %}
+            <div class="card">
+                <div class="card-row">
+                    <strong>{{ r.name }}</strong>
+                </div>
+
+                <div class="card-row">
+                    💊 {{ r.medicine }}
+                </div>
+
+                <div class="card-row">
+                    Quantity: {{ r.quantity }}
+                </div>
+
+                <div class="card-actions">
+                    <a href="/toggle/{{ r.order_id }}" class="toggle-btn">
+                        {{ "Turn OFF" if r.is_active else "Turn ON" }}
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No reminders available.</p>
+    {% endif %}
+
+    <br>
+    <a href="/">⬅ Back</a>
+</div>
+
+</body>
+</html>
