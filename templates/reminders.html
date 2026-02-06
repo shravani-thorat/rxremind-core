@@ -8,13 +8,6 @@
 
 </head>
 
-<script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/static/sw.js")
-    .then(() => console.log("Service Worker registered"));
-}
-</script>
-
 <body>
 
 <div class="container">
@@ -36,10 +29,18 @@ if ("serviceWorker" in navigator) {
                 </div>
 
                 <div class="card-actions">
-                    <a href="/toggle/{{ r.order_id }}" class="toggle-btn">
-                        {{ "Turn OFF" if r.is_active else "Turn ON" }}
+                    {% if r.is_active == 1 %}
+                    <a href="/toggle/{{ r.order_id }}" class="toggle-btn off">
+                        Turn OFF
                     </a>
+                    {% else %}
+                    <a href="/toggle/{{ r.order_id }}" class="toggle-btn on">
+                        Turn ON
+                    </a>
+                    {% endif %}
                 </div>
+
+
             </div>
         {% endfor %}
     {% else %}
@@ -49,6 +50,13 @@ if ("serviceWorker" in navigator) {
     <br>
     <a href="/">⬅ Back</a>
 </div>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/static/sw.js")
+    .then(() => console.log("Service Worker registered"));
+}
+</script>
 
 </body>
 </html>

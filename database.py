@@ -142,6 +142,7 @@ def get_reminders():
                    medicine_orders.quantity,
                    medicine_orders.days,
                    medicine_orders.reminder_date,
+                   medicine_orders.is_active,
                    medicine_orders.last_reminded_on
                    FROM medicine_orders
                    JOIN customers
@@ -153,7 +154,7 @@ def get_reminders():
     conn.close()
 
     for row in rows:
-        order_id,name,phone,med,qty,days,reminder_date, last_reminded_on = row
+        order_id,name,phone,med,qty,days,is_active,reminder_date, last_reminded_on = row
 
         if last_reminded_on is None:
             due_date = datetime.fromisoformat(reminder_date).date()  #check for remind date
@@ -167,7 +168,8 @@ def get_reminders():
                 "name": name,
                 "phone": phone,
                 "medicine": med,
-                "quantity": qty
+                "quantity": qty,
+                "is_active": is_active
             })
     return reminders
 

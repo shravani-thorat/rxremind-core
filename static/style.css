@@ -16,7 +16,7 @@ body {
   margin: auto;
   min-height: 100vh;
   padding: 16px;
-  background: #ffffff;
+  background: #FAFAFD;
 }
 .container {
     max-width: 500px;
@@ -40,7 +40,7 @@ button {
   font-size: 16px;
   border-radius: 10px;
   border: none;
-  background: #2563eb;
+  background: #122056;
   color: white;
 }
 button:hover{
@@ -72,14 +72,22 @@ button:hover{
 }
 
 .toggle-btn {
-    display: inline-block;
-    padding: 8px 12px;
-    background: #007bff;
-    color: white;
+    padding: 8px 14px;
+    border-radius: 20px;
     text-decoration: none;
-    border-radius: 8px;
     font-size: 14px;
 }
+
+.toggle-btn.off {
+    background: #ff4d4d;
+    color: white;
+}
+
+.toggle-btn.on {
+    background: #2ecc71;
+    color: white;
+}
+
  /* to make it look clean on phones */
 @media (max-width: 480px) {
   body {
