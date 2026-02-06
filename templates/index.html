@@ -4,60 +4,60 @@
     <title>RxRemind</title>
     
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="manifest" href="/static/manifest.json">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#2b7cff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 </head>
 
 <body>
-
-<!-- successful flash message -->
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <div class="success-box">
+<div class="app-container">
+    <!-- successful flash message -->
+     {% with messages = get_flashed_messages() %}
+     {% if messages %}
+     <div class="success-box">
         {{ messages[0] }}
     </div>
-  {% endif %}
-{% endwith %}
-
-<div class="container">
-    <h2>Medicine Reminder</h2>
-
-    <form method="POST">
-
-        <label>Customer Name</label><br>
-        <input type="text" name="name" required><br><br>
-
-        <label>Phone Number</label><br>
-        <input type="text" name="phone" required><br><br>
-
-        <hr>
-
-        <div id="medicines">
-            <div>
-                <label>Medicine</label><br>
-                <input type="text" name="medicine[]" required><br>
-
-                <br><label>Quantity</label><br>
-                <input type="number" name="quantity[]" min="1" required><br>
-
-                <br><label>Days</label><br>
-                <input type="number" name="days[]" placeholder="e.g. 30" min="1" required><br>
+    {% endif %}
+    {% endwith %}
+    <div class="container">
+        <h2>Medicine Reminder</h2>
+        <form method="POST">
+            <label>Customer Name</label><br>
+            <input type="text" name="name" required><br><br>
+            <label>Phone Number</label><br>
+            <input type="text" name="phone" required><br><br>
+            <hr>
+            <div id="medicines">
+                <div>
+                    <label>Medicine</label><br>
+                    <input type="text" name="medicine[]" required><br>
+                    <br><label>Quantity</label><br>
+                    <input type="number" name="quantity[]" min="1" required><br>
+                    <br><label>Days</label><br>
+                    <input type="number" name="days[]" placeholder="e.g. 30" min="1" required><br>
+                </div>
             </div>
-        </div>
-
+            
+            <br>
+            <button type="button" onclick="addMedicine()">+ Add Medicine</button>
+            <br><br>
+            
+            <button type="submit">SAVE & REMIND</button>
+        </form>
         <br>
-        <button type="button" onclick="addMedicine()">+ Add Medicine</button>
-        <br><br>
-
-        <button type="submit">SAVE & REMIND</button>
-    </form>
-
-    <br>
-    <a href="/reminders">View Reminders</a>
+        <a href="/reminders">View Reminders</a>
+    </div>
 </div>
-
 <!-- load JS -->
 <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/static/sw.js")
+    .then(() => console.log("Service Worker registered"));
+}
+</script>
 
 </body>
 </html>

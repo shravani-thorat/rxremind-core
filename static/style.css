@@ -1,7 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* according to phones fonts setting */
 body {
-    font-family: "Times New Roman", Times, serif;
-    background: #f4f6f8;
-    padding: 30px;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.app-container {
+  max-width: 430px;   /* iPhone Pro Max width */
+  width: 100%;
+  margin: auto;
+  min-height: 100vh;
+  padding: 16px;
+  background: #ffffff;
 }
 .container {
     max-width: 500px;
@@ -11,17 +26,22 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-input, select, button {
-    width: 100%;
-    padding: 8px;
-    margin-top: 6px;
-    margin-bottom: 12px;
+input, select {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;   
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 button {
-    background: #2e7d32;
-    color:white;
-    border: none;
-    cursor: pointer;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background: #2563eb;
+  color: white;
 }
 button:hover{
     background: #1b5e20;
@@ -60,4 +80,16 @@ button:hover{
     border-radius: 8px;
     font-size: 14px;
 }
+ /* to make it look clean on phones */
+@media (max-width: 480px) {
+  body {
+    background: #f4f6f8;
+  }
+
+  .app-container {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
 
